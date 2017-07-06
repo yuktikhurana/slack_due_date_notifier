@@ -1,0 +1,11 @@
+= slack_due_date_notifier
+
+Here, we're trying to hit an API of an external api that posts a direct a message to a user through a bot.
+We're using sidekiq to queue a job, which would be executed on the due date of the issue and would send a reminder to the assigned person of the issue.
+
+Setup the plugin as follows
+
+1. git clone <plugin_repo> in  redmine/plugins/
+2. bundle (since this plugin has a pluginGemfile)
+3. run sidekiq using bundle exec sidekiq (You can view the sidekiq jobs at /sidekiq)
+4. Setup the SLACK_URL environment variable. It's the url of the slack post message application

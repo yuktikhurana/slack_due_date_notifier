@@ -1,0 +1,2 @@
+gem 'httparty', '~> 0.15.5'
+gem 'sidekiq', '~> 5.0.4'

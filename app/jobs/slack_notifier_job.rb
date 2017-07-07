@@ -7,7 +7,7 @@ class SlackNotifierJob < ActiveJob::Base
   def perform(*args)
     issue = args.first
     res = HTTParty.post(ENV['SLACK_URL'], body: {
-      message: I18n.translate(:due_date_message),
+      message: I18n.translate(:due_date_message, title: issue.subject),
       user_name: issue.assigned_to_login
     })
   end

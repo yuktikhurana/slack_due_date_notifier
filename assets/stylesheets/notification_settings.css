@@ -1,0 +1,12 @@
+.tabular.settings label {
+  margin-left: auto;
+  width: 100%;
+}
+
+.tabular.settings .form-input {
+  width: 40%;
+}
+
+.tabular.settings .form-input input {
+  width: 100%;
+}

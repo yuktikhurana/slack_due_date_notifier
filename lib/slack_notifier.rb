@@ -8,8 +8,9 @@ module SlackNotifier
     base.send(:include, InstanceMethods)
 
     base.class_eval do
-      after_save :schedule_due_date_notification, if: [:assigned_to_id?, :due_date?, :due_date_changed?]
+      after_save :schedule_due_date_notification, if: [:status_resolved_or_date_changed?, :author_id?, :assigned_to_id?]
       delegate :login, to: :assigned_to, prefix: true, allow_nil: true
+      delegate :login, to: :author, prefix: true, allow_nil: true
     end
 
   end
@@ -38,6 +39,14 @@ module SlackNotifier
       SlackNotifierJob.set(wait_until: due_date.beginning_of_day).perform_later(self)
       SlackNotifierJob.set(wait_until: (due_date - before_days.days).beginning_of_day).perform_later(self) if before_days > 0
       SlackNotifierJob.set(wait_until: (due_date + after_days).beginning_of_day).perform_later(self) if after_days > 0
+    end
+
+    def status_resolved_or_date_changed?
+      plugin_settings = Setting.find_by_name('plugin_slack_due_date_notifier').value
+
+      (send("#{ plugin_settings['notification_date_column'] }_changed?") || status_id_changed?) &&
+      send("#{ plugin_settings['notification_date_column'] }?") &&
+      status.name == 'Resolved'
     end
 
   end

@@ -8,7 +8,15 @@
         <%= label_tag :"settings[slack_url]" , 'Notification Slack URL' %>
       </th>
       <td class='form-input'>
-        <%= text_field_tag :"settings[slack_url]", Setting.plugin_slack_due_date_notifier["slack_url"] %>
+        <%= text_field_tag :"settings[slack_url]", Setting.plugin_slack_due_date_notifier['slack_url'] %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <%= label_tag :"settings[slack_token]" , 'Slack Authentication Token' %>
+      </th>
+      <td class='form-input'>
+        <%= text_field_tag :"settings[slack_token]", Setting.plugin_slack_due_date_notifier['slack_token'] %>
       </td>
     </tr>
     <tr>
@@ -16,7 +24,7 @@
         <%= label_tag :"settings[notification_days_before]" , 'No. of days before due date to send notification on' %>
       </th>
       <td class='form-input'>
-        <%= number_field_tag :"settings[notification_days_before]", Setting.plugin_slack_due_date_notifier["notification_days_before"] %>
+        <%= number_field_tag :"settings[notification_days_before]", Setting.plugin_slack_due_date_notifier['notification_days_before'] %>
       </td>
     </tr>
     <tr>
@@ -24,7 +32,15 @@
         <%= label_tag :"settings[notification_days_after]" , 'No. of days after due date to send notification on' %>
       </th>
       <td class='form-input'>
-        <%= number_field_tag :"settings[notification_days_after]", Setting.plugin_slack_due_date_notifier["notification_days_after"] %>
+        <%= number_field_tag :"settings[notification_days_after]", Setting.plugin_slack_due_date_notifier['notification_days_after'] %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <%= label_tag :"settings[notification_date_column]" , 'Date Column Name to track on' %>
+      </th>
+      <td class='form-input'>
+        <%= text_field_tag :"settings[notification_date_column]", Setting.plugin_slack_due_date_notifier['notification_date_column'] %>
       </td>
     </tr>
   </tbody>
